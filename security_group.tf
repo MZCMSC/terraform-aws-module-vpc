@@ -1,4 +1,4 @@
-resource "aws_default_security_group" "default_sg" {
+resource "aws_default_security_group" "this" {
   vpc_id = aws_vpc.this.id
 
   # ingress {
