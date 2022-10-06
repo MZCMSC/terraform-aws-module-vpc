@@ -4,11 +4,11 @@ resource "aws_vpc" "this" {
   enable_dns_support   = var.enable_dns_support
 
   tags = merge(
-    var.tags, 
+    var.tags,
       tomap({
         Name = format(
-          "%s-%s",  
-          var.prefix, 
+          "%s-%s",
+          var.prefix,
           var.vpc_name
       )
     })

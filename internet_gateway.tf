@@ -4,8 +4,8 @@ resource "aws_internet_gateway" "this" {
   tags   = merge(var.tags,
     tomap({
       Name = format(
-        "%s-%s-igw", 
-        var.prefix, 
+        "%s-%s-igw",
+        var.prefix,
         var.vpc_name)
     })
   )

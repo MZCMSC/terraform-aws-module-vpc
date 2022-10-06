@@ -1,15 +1,15 @@
 ##################################################
-#                  Route_Table 
+#                  Route_Table
 ##################################################
 
 resource "aws_default_route_table" "this" {
   default_route_table_id = aws_vpc.this.default_route_table_id
- 
-  tags = merge(var.tags, 
+
+  tags = merge(var.tags,
     tomap({
       Name = format(
-        "%s-%s-default-rtb", 
-        var.prefix, 
+        "%s-%s-default-rtb",
+        var.prefix,
         var.vpc_name)
       })
     )
