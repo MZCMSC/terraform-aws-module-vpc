@@ -10,9 +10,9 @@ resource "aws_default_route_table" "this" {
       Name = format(
         "%s-%s-default-rtb",
         var.prefix,
-        var.vpc_name)
-      })
-    )
+      var.vpc_name)
+    })
+  )
 }
 
 resource "aws_route_table" "public" {
@@ -26,7 +26,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = merge(var.tags,
-    tomap({ 
+    tomap({
       Name = format(
         "%s-%s-%s-%s-%s-rtb",
         var.prefix,
@@ -65,8 +65,8 @@ resource "aws_route_table" "private_with_natgw" {
   for_each = { for i in local.private_subnets : i.cidr => i if i.natgw == "yes" }
 
   route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.this[element(var.subnets["main"].cidr, index(var.subnets[each.value.name].cidr, each.key))].id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.this[element(var.subnets["main"].cidr, index(var.subnets[each.value.name].cidr, each.key))].id
 
   }
 
